@@ -1,9 +1,18 @@
 #!/usr/bin/env node
 
 import yargs from "yargs";
+import createSession from "../modules/createSession";
 
 // Create Canvas Command
-yargs.command("*", "Create Canvas command", function (argv: any) {
-    console.log('Create Canvas');
-}).help()
-  .argv;
+yargs
+  .command("*", "Create Canvas command", function (argv: any) {
+    try {
+      const width = parseInt(argv.argv._[0], 10);
+      const height = parseInt(argv.argv._[1], 10);
+
+      createSession(width, height);
+    } catch (e) {
+      console.error(e);
+    }
+  })
+  .help().argv;
