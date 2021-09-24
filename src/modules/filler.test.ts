@@ -1,5 +1,5 @@
 import fillTheCanvas from "./filler";
-import { updateCanvas } from "../utils/common";
+import { updateCanvas, printCanvas } from "../utils/common";
 
 jest.mock("../utils/common", () => ({
   ...jest.requireActual("../utils/common"),
@@ -12,6 +12,7 @@ jest.mock("../utils/common", () => ({
     filler: [],
   }),
   isCanvasCreated: () => true,
+  printCanvas: jest.fn(),
 }));
 
 describe("FillTheCanvas test cases", () => {

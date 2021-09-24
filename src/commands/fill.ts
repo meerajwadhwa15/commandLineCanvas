@@ -11,7 +11,7 @@ yargs
       const y = parseInt(argv.argv._[1], 10);
       const c = argv.argv._[2];
 
-      fillTheCanvas(x, y, c);
+      console.log(fillTheCanvas(x, y, c));
     } catch (e) {
       console.error(e);
     }

@@ -1,5 +1,5 @@
 import drawRectangle from "./rectangle";
-import { updateCanvas } from "../utils/common";
+import { updateCanvas, printCanvas } from "../utils/common";
 
 jest.mock("../utils/common", () => ({
   ...jest.requireActual("../utils/common"),
@@ -12,6 +12,7 @@ jest.mock("../utils/common", () => ({
     filler: [],
   }),
   isCanvasCreated: () => true,
+  printCanvas: jest.fn(),
 }));
 
 describe("DrawRectangle test cases", () => {
@@ -31,5 +32,6 @@ describe("DrawRectangle test cases", () => {
       rectangle: [{ x1: 5, y1: 4, x2: 5, y2: 6 }],
       width: 20,
     });
+    expect(printCanvas).toHaveBeenCalled();
   });
 });

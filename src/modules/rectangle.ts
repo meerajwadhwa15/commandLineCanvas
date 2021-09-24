@@ -1,4 +1,9 @@
-import { updateCanvas, readCanvas, isCanvasCreated } from "../utils/common";
+import {
+  updateCanvas,
+  readCanvas,
+  isCanvasCreated,
+  printCanvas,
+} from "../utils/common";
 
 const isValidInput = (x1: number, y1: number, x2: number, y2: number) => {
   return x1 > 0 && y1 > 0 && x2 > 0 && y2 > 0;
@@ -20,6 +25,7 @@ function drawRectangle(x1: number, y1: number, x2: number, y2: number) {
 
   canvas.rectangle.push({ x1, y1, x2, y2 });
   updateCanvas(canvas);
+  return printCanvas(canvas);
 }
 
 export default drawRectangle;

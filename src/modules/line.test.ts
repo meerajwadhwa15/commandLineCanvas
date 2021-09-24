@@ -1,5 +1,5 @@
 import drawLine from "./line";
-import { updateCanvas } from "../utils/common";
+import { updateCanvas, printCanvas } from "../utils/common";
 
 jest.mock("../utils/common", () => ({
   ...jest.requireActual("../utils/common"),
@@ -12,6 +12,7 @@ jest.mock("../utils/common", () => ({
     filler: [],
   }),
   isCanvasCreated: () => true,
+  printCanvas: jest.fn(),
 }));
 
 describe("DrawLine test cases", () => {
@@ -31,5 +32,6 @@ describe("DrawLine test cases", () => {
       rectangle: [],
       width: 20,
     });
+    expect(printCanvas).toHaveBeenCalled();
   });
 });

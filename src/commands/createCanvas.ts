@@ -10,7 +10,7 @@ yargs
       const width = parseInt(argv.argv._[0], 10);
       const height = parseInt(argv.argv._[1], 10);
 
-      createSession(width, height);
+      console.log(createSession(width, height));
     } catch (e) {
       console.error(e);
     }

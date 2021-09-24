@@ -1,4 +1,4 @@
-import { updateCanvas, isCanvasCreated } from "../utils/common";
+import { updateCanvas, isCanvasCreated, printCanvas } from "../utils/common";
 import { INITIAL_CANVAS_STATE } from "../config/constants";
 
 export const isValidInput = (width: number = 0, height: number = 0) => {
@@ -20,6 +20,7 @@ const createSession = (width: number, height: number) => {
   canvas.height = height;
 
   updateCanvas(canvas);
+  return printCanvas(canvas);
 };
 
 export default createSession;
