@@ -125,9 +125,9 @@ export const fill = (
 
 export const generateArray = (width: number, height: number) => {
   let printArray = [];
-  for (let i = 0; i <= height; i++) {
+  for (let i = 1; i <= height; i++) {
     const arr = Array(width);
-    if (i === 0 || i === height) {
+    if (i === 1 || i === height) {
       arr.fill("-");
     } else {
       arr.fill("|", 0).fill(" ", 1, -1);
