@@ -1,6 +1,11 @@
 import fs from "fs";
 import { SESSION_FILE_PATH, INITIAL_CANVAS_STATE } from "../config/constants";
-import { canvasDataType, canvasLines, canvasRectangles } from "../types/type";
+import {
+  canvasDataType,
+  canvasLines,
+  canvasRectangles,
+  canvasFillers,
+} from "../types/type";
 
 export const updateCanvas = async (canvasData: canvasDataType) => {
   fs.writeFileSync(SESSION_FILE_PATH, JSON.stringify(canvasData));
@@ -30,13 +35,15 @@ export const isCanvasCreated = (): boolean => {
   @return string
 */
 export const printCanvas = (canvasData: canvasDataType) => {
-  let printArray = [];
-  for (let i = 0; i < canvasData.height; i++) {
-    printArray.push(Array(canvasData.width).fill("-"));
-  }
-
+  let printArray = generateArray(canvasData.width, canvasData.height);
   printArray = drawLine(canvasData.lines, printArray);
   printArray = drawRectangle(canvasData.rectangle, printArray);
+  printArray = fill(
+    canvasData.filler,
+    canvasData.width,
+    canvasData.height,
+    printArray
+  );
   return printArray.map((item) => item.join(" ")).join("\r\n");
 };
 
@@ -85,5 +92,47 @@ export const drawRectangle = (
       }
     }
   });
+  return printArray;
+};
+
+export const fill = (
+  fillers: canvasFillers,
+  width: number,
+  height: number,
+  printArray: string[][]
+) => {
+  const floodFillUtil = (x: number, y: number, newC: string, prevC: string) => {
+    if (x < 0 || x >= width || y < 0 || y >= height) return;
+    if (printArray[y][x] != prevC) return;
+
+    // Replace the color at (x, y)
+    printArray[y][x] = newC;
+
+    // Recur for north, east, south and west
+    floodFillUtil(x + 1, y, newC, prevC);
+    floodFillUtil(x - 1, y, newC, prevC);
+    floodFillUtil(x, y + 1, newC, prevC);
+    floodFillUtil(x, y - 1, newC, prevC);
+  };
+
+  fillers.forEach((filler) => {
+    var prevValue = printArray[filler.y][filler.x];
+    if (prevValue == filler.c) return;
+    floodFillUtil(filler.x, filler.y, filler.c, prevValue);
+  });
+  return printArray;
+};
+
+export const generateArray = (width: number, height: number) => {
+  let printArray = [];
+  for (let i = 0; i <= height; i++) {
+    const arr = Array(width);
+    if (i === 0 || i === height) {
+      arr.fill("-");
+    } else {
+      arr.fill("|", 0).fill(" ", 1, -1);
+    }
+    printArray.push(arr);
+  }
   return printArray;
 };
