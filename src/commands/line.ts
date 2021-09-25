@@ -2,6 +2,7 @@
 
 import yargs from "yargs";
 import drawLine from "../modules/line";
+import withCanvas from "../wrappers/withCanvas";
 
 // Draw a Line Command
 yargs
@@ -12,7 +13,7 @@ yargs
       const x2 = parseInt(argv.argv._[2], 10);
       const y2 = parseInt(argv.argv._[3], 10);
 
-      console.log(drawLine(x1, y1, x2, y2));
+      console.log(withCanvas(() => drawLine(x1, y1, x2, y2)));
     } catch (e) {
       console.error(e);
     }
