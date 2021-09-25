@@ -1,8 +1,8 @@
-import drawLine from "./line";
-import { updateCanvas, printCanvas } from "../utils/common";
+import drawLine from "./index";
+import { updateCanvas, printCanvas } from "../../utils/common";
 
-jest.mock("../utils/common", () => ({
-  ...jest.requireActual("../utils/common"),
+jest.mock("../../utils/common", () => ({
+  ...jest.requireActual("../../utils/common"),
   updateCanvas: jest.fn(),
   readCanvas: () => ({
     width: 20,

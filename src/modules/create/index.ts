@@ -1,5 +1,5 @@
-import { updateCanvas, isCanvasCreated, printCanvas } from "../utils/common";
-import { INITIAL_CANVAS_STATE } from "../config/constants";
+import { updateCanvas, isCanvasCreated, printCanvas } from "../../utils/common";
+import { INITIAL_CANVAS_STATE } from "../../config/constants";
 
 export const isValidInput = (width: number = 0, height: number = 0) => {
   return width > 0 && height > 0;

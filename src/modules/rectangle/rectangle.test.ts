@@ -1,8 +1,8 @@
-import drawRectangle from "./rectangle";
-import { updateCanvas, printCanvas } from "../utils/common";
+import drawRectangle from "./index";
+import { updateCanvas, printCanvas } from "../../utils/common";
 
-jest.mock("../utils/common", () => ({
-  ...jest.requireActual("../utils/common"),
+jest.mock("../../utils/common", () => ({
+  ...jest.requireActual("../../utils/common"),
   updateCanvas: jest.fn(),
   readCanvas: () => ({
     width: 20,

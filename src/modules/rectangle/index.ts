@@ -1,4 +1,4 @@
-import { updateCanvas, readCanvas, printCanvas } from "../utils/common";
+import { updateCanvas, readCanvas, printCanvas } from "../../utils/common";
 
 const isValidInput = (x1: number, y1: number, x2: number, y2: number) => {
   return x1 > 0 && y1 > 0 && x2 > 0 && y2 > 0;

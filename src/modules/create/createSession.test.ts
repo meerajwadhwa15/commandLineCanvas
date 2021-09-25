@@ -1,8 +1,8 @@
-import createCanvas from "./createSession";
-import { updateCanvas, resetCanvas, printCanvas } from "../utils/common";
+import createCanvas from "./index";
+import { updateCanvas, resetCanvas, printCanvas } from "../../utils/common";
 
-jest.mock("../utils/common", () => ({
-  ...jest.requireActual("../utils/common"),
+jest.mock("../../utils/common", () => ({
+  ...jest.requireActual("../../utils/common"),
   updateCanvas: jest.fn(),
   printCanvas: jest.fn(),
 }));

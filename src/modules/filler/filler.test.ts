@@ -1,8 +1,8 @@
-import fillTheCanvas from "./filler";
-import { updateCanvas, printCanvas } from "../utils/common";
+import fillTheCanvas from "./index";
+import { updateCanvas, printCanvas } from "../../utils/common";
 
-jest.mock("../utils/common", () => ({
-  ...jest.requireActual("../utils/common"),
+jest.mock("../../utils/common", () => ({
+  ...jest.requireActual("../../utils/common"),
   updateCanvas: jest.fn(),
   readCanvas: () => ({
     width: 20,

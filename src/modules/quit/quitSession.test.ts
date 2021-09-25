@@ -1,8 +1,8 @@
-import quitSession from "./quitSession";
-import { resetCanvas } from "../utils/common";
+import quitSession from "./index";
+import { resetCanvas } from "../../utils/common";
 
-jest.mock("../utils/common", () => ({
-  ...jest.requireActual("../utils/common"),
+jest.mock("../../utils/common", () => ({
+  ...jest.requireActual("../../utils/common"),
   resetCanvas: jest.fn(),
 }));
 

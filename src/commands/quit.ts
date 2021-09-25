@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import yargs from "yargs";
-import quitSession from "../modules/quitSession";
+import quitSession from "../modules/quit";
 
 // Create Canvas Command
 yargs

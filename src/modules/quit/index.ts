@@ -1,4 +1,4 @@
-import { resetCanvas } from "../utils/common";
+import { resetCanvas } from "../../utils/common";
 
 const quitSession = () => {
   resetCanvas();
