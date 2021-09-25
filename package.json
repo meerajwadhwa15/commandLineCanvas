@@ -20,7 +20,8 @@
     "C": "./dist/src/commands/createCanvas.js",
     "L": "./dist/src/commands/line.js",
     "R": "./dist/src/commands/rectangle.js",
-    "B": "./dist/src/commands/fill.js"
+    "B": "./dist/src/commands/fill.js",
+    "Q": "./dist/src/commands/quit.js"
   },
   "homepage": "https://github.com/meerajwadhwa15/commandLineCanvas#readme",
   "dependencies": {
