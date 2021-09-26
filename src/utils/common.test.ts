@@ -69,13 +69,13 @@ describe("Utils Common test cases", () => {
     expect(xAxisWithInRange(0, 20)).toBeFalsy();
     expect(xAxisWithInRange(3, 20)).toBeTruthy();
     expect(xAxisWithInRange(18, 20)).toBeTruthy();
-    expect(xAxisWithInRange(19, 20)).toBeFalsy();
+    expect(xAxisWithInRange(21, 20)).toBeFalsy();
   });
 
   test("Should test yAxes in Range", () => {
     expect(yAxisWithInRange(0, 20)).toBeFalsy();
     expect(yAxisWithInRange(3, 20)).toBeTruthy();
     expect(yAxisWithInRange(18, 20)).toBeTruthy();
-    expect(yAxisWithInRange(19, 20)).toBeFalsy();
+    expect(yAxisWithInRange(21, 20)).toBeFalsy();
   });
 });

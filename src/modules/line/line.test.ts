@@ -5,8 +5,8 @@ jest.mock("../../utils/common", () => ({
   ...jest.requireActual("../../utils/common"),
   updateCanvas: jest.fn(),
   readCanvas: () => ({
-    width: 22,
-    height: 6,
+    width: 20,
+    height: 4,
     lines: [],
     rectangle: [],
     filler: [],
@@ -31,10 +31,10 @@ describe("DrawLine test cases", () => {
     drawLine(1, 1, 20, 1);
     expect(updateCanvas).toHaveBeenCalledWith({
       filler: [],
-      height: 6,
+      height: 4,
       lines: [{ x1: 1, y1: 1, x2: 20, y2: 1 }],
       rectangle: [],
-      width: 22,
+      width: 20,
     });
     expect(printCanvas).toHaveBeenCalled();
   });
