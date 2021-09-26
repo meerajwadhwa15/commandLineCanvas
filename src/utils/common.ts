@@ -129,7 +129,6 @@ export const fill = (
 
   fillers.forEach((filler) => {
     var prevValue = printArray[filler.y][filler.x] || "";
-    console.log(prevValue.toLowerCase());
     if (prevValue === FILLER_VALUE || prevValue == filler.c) return;
     floodFillUtil(filler.x, filler.y, filler.c, prevValue);
   });
