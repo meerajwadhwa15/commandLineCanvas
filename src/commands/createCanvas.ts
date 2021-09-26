@@ -8,12 +8,12 @@ yargs
   .command("*", "Create Canvas command", function (argv: any) {
     try {
       // Adding 2 for canvas border
-      const width = parseInt(argv.argv._[0], 10) + 2;
-      const height = parseInt(argv.argv._[1], 10) + 2;
+      const width = parseInt(argv.argv._[0], 10);
+      const height = parseInt(argv.argv._[1], 10);
 
       console.log(createSession(width, height));
     } catch (e) {
-      console.error(e);
+      console.error("Some error occured, Please check your input");
     }
   })
   .help().argv;

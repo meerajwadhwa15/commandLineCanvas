@@ -15,7 +15,7 @@ yargs
 
       console.log(withCanvas(() => drawRectangle(x1, y1, x2, y2)));
     } catch (e) {
-      console.error(e);
+      console.error('Some error occured, Please check your input');
     }
   })
   .help().argv;

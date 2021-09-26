@@ -10,7 +10,7 @@ yargs
       quitSession();
       console.log("Session quit");
     } catch (e) {
-      console.error(e);
+      console.error('Some error occured, Please check your input');
     }
   })
   .help().argv;

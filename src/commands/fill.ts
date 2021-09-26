@@ -14,7 +14,7 @@ yargs
 
       console.log(withCanvas(() => fillTheCanvas(x, y, c)));
     } catch (e) {
-      console.error(e);
+      console.error('Some error occured, Please check your input');
     }
   })
   .help().argv;

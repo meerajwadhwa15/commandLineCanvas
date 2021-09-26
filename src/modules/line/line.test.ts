@@ -5,8 +5,8 @@ jest.mock("../../utils/common", () => ({
   ...jest.requireActual("../../utils/common"),
   updateCanvas: jest.fn(),
   readCanvas: () => ({
-    width: 20,
-    height: 4,
+    width: 22,
+    height: 6,
     lines: [],
     rectangle: [],
     filler: [],
@@ -21,16 +21,20 @@ describe("DrawLine test cases", () => {
   test("Should validate input", () => {
     expect(() => drawLine(0, 0, 0, 0)).toThrow("Invalid Input");
     expect(() => drawLine(-1, 10, 5, 4)).toThrow("Invalid Input");
+    expect(() => drawLine(1, 2, 6, 3)).toThrow("Invalid Input");
+    expect(() => drawLine(6, 3, 5, 4)).toThrow("Invalid Input");
+    expect(() => drawLine(21, 3, 5, 4)).toThrow("Invalid Input");
+    expect(() => drawLine(5, 5, 5, 4)).toThrow("Invalid Input");
   });
 
   test("Should draw line", () => {
-    drawLine(5, 4, 5, 6);
+    drawLine(1, 1, 20, 1);
     expect(updateCanvas).toHaveBeenCalledWith({
       filler: [],
-      height: 4,
-      lines: [{ x1: 5, y1: 4, x2: 5, y2: 6 }],
+      height: 6,
+      lines: [{ x1: 1, y1: 1, x2: 20, y2: 1 }],
       rectangle: [],
-      width: 20,
+      width: 22,
     });
     expect(printCanvas).toHaveBeenCalled();
   });

@@ -1,14 +1,26 @@
-import { updateCanvas, readCanvas, printCanvas } from "../../utils/common";
+import {
+  updateCanvas,
+  readCanvas,
+  printCanvas,
+  xAxisWithInRange,
+  yAxisWithInRange,
+} from "../../utils/common";
 
-const isValidInput = (x: number, y: number, c: string) => {
-  return x > 0 && y > 0;
+const isValidInput = (
+  x: number,
+  y: number,
+  c: string,
+  width: number,
+  height: number
+) => {
+  return xAxisWithInRange(x, width) && yAxisWithInRange(y, height) && c;
 };
 const fillTheCanvas = (x: number, y: number, c: string) => {
-  if (!isValidInput(x, y, c)) {
+  const canvas = readCanvas();
+  if (!isValidInput(x, y, c, canvas.width, canvas.height)) {
     throw "Invalid Input";
   }
 
-  const canvas = readCanvas();
   if (!canvas.filler) {
     canvas.filler = [];
   }

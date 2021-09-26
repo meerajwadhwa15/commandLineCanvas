@@ -8,3 +8,7 @@ export const INITIAL_CANVAS_STATE: canvasDataType = {
   rectangle: [],
   filler: [],
 };
+
+export const EXTRA_WIDTH = 2;
+export const EXTRA_HEIGHT = 2;
+export const FILLER_VALUE = 'x';

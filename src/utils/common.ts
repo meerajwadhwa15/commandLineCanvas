@@ -1,5 +1,11 @@
 import fs from "fs";
-import { SESSION_FILE_PATH, INITIAL_CANVAS_STATE } from "../config/constants";
+import {
+  SESSION_FILE_PATH,
+  INITIAL_CANVAS_STATE,
+  EXTRA_WIDTH,
+  EXTRA_HEIGHT,
+  FILLER_VALUE,
+} from "../config/constants";
 import {
   canvasDataType,
   canvasLines,
@@ -57,13 +63,17 @@ export const drawLine = (lines: canvasLines, printArray: string[][]) => {
   lines.forEach((line) => {
     // Horizontal case
     if (line.y1 === line.y2) {
-      for (let i = line.x1; i <= line.x2; i++) {
-        printArray[line.y1][i] = "x";
+      const start = line.x2 < line.x1 ? line.x2 : line.x1;
+      const end = line.x2 < line.x1 ? line.x1 : line.x2;
+      for (let i = start; i <= end; i++) {
+        printArray[line.y1][i] = FILLER_VALUE;
       }
     } else if (line.x1 === line.x2) {
       // Vertical case
-      for (let i = line.y1; i <= line.y2; i++) {
-        printArray[i][line.x1] = "x";
+      const start = line.y2 < line.y1 ? line.y2 : line.y1;
+      const end = line.y2 < line.y1 ? line.y1 : line.y2;
+      for (let i = start; i <= end; i++) {
+        printArray[i][line.x1] = FILLER_VALUE;
       }
     }
   });
@@ -83,11 +93,11 @@ export const drawRectangle = (
   rectangles.forEach((rectangle) => {
     for (let i = rectangle.y1; i <= rectangle.y2; i++) {
       if (i !== rectangle.y1 && i !== rectangle.y2) {
-        printArray[i][rectangle.x1] = "x";
-        printArray[i][rectangle.x2] = "x";
+        printArray[i][rectangle.x1] = FILLER_VALUE;
+        printArray[i][rectangle.x2] = FILLER_VALUE;
       } else {
         for (let j = rectangle.x1; j <= rectangle.x2; j++) {
-          printArray[i][j] = "x";
+          printArray[i][j] = FILLER_VALUE;
         }
       }
     }
@@ -101,6 +111,8 @@ export const fill = (
   height: number,
   printArray: string[][]
 ) => {
+  width += EXTRA_WIDTH;
+  height += EXTRA_HEIGHT;
   const floodFillUtil = (x: number, y: number, newC: string, prevC: string) => {
     if (x < 0 || x >= width || y < 0 || y >= height) return;
     if (printArray[y][x] != prevC) return;
@@ -116,8 +128,9 @@ export const fill = (
   };
 
   fillers.forEach((filler) => {
-    var prevValue = printArray[filler.y][filler.x];
-    if (prevValue == filler.c) return;
+    var prevValue = printArray[filler.y][filler.x] || "";
+    console.log(prevValue.toLowerCase());
+    if (prevValue === FILLER_VALUE || prevValue == filler.c) return;
     floodFillUtil(filler.x, filler.y, filler.c, prevValue);
   });
   return printArray;
@@ -125,6 +138,8 @@ export const fill = (
 
 export const generateArray = (width: number, height: number) => {
   let printArray = [];
+  width += EXTRA_WIDTH;
+  height += EXTRA_HEIGHT;
   for (let i = 1; i <= height; i++) {
     const arr = Array(width);
     if (i === 1 || i === height) {
@@ -135,4 +150,12 @@ export const generateArray = (width: number, height: number) => {
     printArray.push(arr);
   }
   return printArray;
+};
+
+export const xAxisWithInRange = (num: number, width: number): boolean => {
+  return num > 0 && num <= width;
+};
+
+export const yAxisWithInRange = (num: number, height: number): boolean => {
+  return num > 0 && num <= height;
 };

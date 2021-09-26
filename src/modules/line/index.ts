@@ -1,15 +1,35 @@
-import { updateCanvas, readCanvas, printCanvas } from "../../utils/common";
+import {
+  updateCanvas,
+  readCanvas,
+  printCanvas,
+  xAxisWithInRange,
+  yAxisWithInRange,
+} from "../../utils/common";
 
-const isValidInput = (x1: number, y1: number, x2: number, y2: number) => {
-  return x1 > 0 && y1 > 0 && x2 > 0 && y2 > 0;
+const isValidInput = (
+  x1: number,
+  y1: number,
+  x2: number,
+  y2: number,
+  width: number,
+  height: number
+) => {
+  return (
+    xAxisWithInRange(x1, width) &&
+    yAxisWithInRange(y1, height) &&
+    xAxisWithInRange(x2, width) &&
+    yAxisWithInRange(y2, height) &&
+    (x1 === x2 || y1 === y2)
+  );
 };
 
 function drawLine(x1: number, y1: number, x2: number, y2: number) {
-  if (!isValidInput(x1, y1, x2, y2)) {
+  const canvas = readCanvas();
+
+  if (!isValidInput(x1, y1, x2, y2, canvas.width, canvas.height)) {
     throw "Invalid Input";
   }
 
-  const canvas = readCanvas();
   if (!canvas.lines) {
     canvas.lines = [];
   }
